@@ -18,16 +18,22 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.sender.type != 'Bot' }}
     steps:
-      - name: Checkout repository
+      - name: Checkout target repository
         uses: actions/checkout@v4
+
+      - name: Checkout Code Agent source
+        uses: actions/checkout@v4
+        with:
+          repository: potproject/code-agent
+          path: code-agent
 
       - name: Install latest Claude Code CLI
         run: |
           npm install -g @anthropic-ai/claude-code
           claude --version
 
-      - name: Run Code Agent
-        uses: potproject/code-agent@main
+      - name: Run Code Agent from source
+        uses: ./code-agent
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
