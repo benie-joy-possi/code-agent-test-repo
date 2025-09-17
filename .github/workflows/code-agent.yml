@@ -18,7 +18,16 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.sender.type != 'Bot' }}
     steps:
-      - uses: potproject/code-agent@main
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install latest Claude Code CLI
+        run: |
+          npm install -g @anthropic-ai/claude-code
+          claude --version
+
+      - name: Run Code Agent
+        uses: potproject/code-agent@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -37,7 +46,7 @@ jobs:
           # disable-prompt-caching: "1"
 
           # [Codex Settings]
-          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          # openai-api-key: ${{ secrets.OPENAI_API_KEY }}
 
           # [Optional Codex Settings]
           # openai-base-url: "https://api.openai.com"
