@@ -27,18 +27,13 @@ jobs:
           repository: potproject/code-agent
           path: code-agent
 
-      - name: Install latest Claude Code CLI
-        run: |
-          npm install -g @anthropic/claude-cli@latest
-           claude --version
-
       - name: Run Code Agent from source
         uses: ./code-agent
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
           # [Claude Code Settings]
-          anthropic-api-key: ${{ secrets.ANTHROPIC_API_KEY }}
+          # anthropic-api-key: ${{ secrets.ANTHROPIC_API_KEY }}
 
           # [Optional Claude Code Settings]
           # anthropic-base-url: "https://api.anthropic.com"
@@ -51,8 +46,8 @@ jobs:
           # aws-region: "us-east-1"
           # disable-prompt-caching: "1"
 
-          # [Codex Settings]
-          # openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          [Codex Settings]
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
 
-          # [Optional Codex Settings]
-          # openai-base-url: "https://api.openai.com"
+          [Optional Codex Settings]
+          openai-base-url: "https://api.openai.com"
