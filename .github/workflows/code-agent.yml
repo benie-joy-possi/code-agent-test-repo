@@ -29,8 +29,8 @@ jobs:
 
       - name: Install latest Claude Code CLI
         run: |
-          npm install -g @anthropic-ai/claude-code
-          claude --version
+          npm install -g @anthropic/claude-cli@latest
+           claude --version
 
       - name: Run Code Agent from source
         uses: ./code-agent
