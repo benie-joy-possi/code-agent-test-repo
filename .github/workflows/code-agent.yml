@@ -18,17 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.sender.type != 'Bot' }}
     steps:
-      - name: Checkout target repository
-        uses: actions/checkout@v4
-
-      - name: Checkout Code Agent source
-        uses: actions/checkout@v4
-        with:
-          repository: potproject/code-agent
-          path: code-agent
-
-      - name: Run Code Agent from source
-        uses: ./code-agent
+      - uses: potproject/code-agent@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -46,8 +36,8 @@ jobs:
           # aws-region: "us-east-1"
           # disable-prompt-caching: "1"
 
-          [Codex Settings]
+          # [Codex Settings]
           openai-api-key: ${{ secrets.OPENAI_API_KEY }}
 
-          [Optional Codex Settings]
+          # [Optional Codex Settings]
           openai-base-url: "https://api.openai.com"
